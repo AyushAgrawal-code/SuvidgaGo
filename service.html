@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuvidhaGo Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .btn-container {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            color: white;
+        }
+        .book-btn {
+            background-color: #28a745; /* Green */
+        }
+        .edit-btn {
+            background-color: #007bff; /* Blue */
+        }
+        .btn:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SuvidhaGo Services</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="service-container">
+        <h2>Loading...</h2>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const serviceType = urlParams.get("type");
+
+            const serviceData = {
+                pan: "<h2>PAN Card Services</h2><p>Apply, update, or track your PAN card.</p>",
+                aadhaar: "<h2>Aadhaar Services</h2> <br><p>Update, link, or verify your Aadhaar.</br></p>",
+                passport: "<h2>Passport Services</h2><p>Apply for a new passport or renew it.</p>",
+                ayushmanCard:"<h2>AyushMan card Services</h2><p>Apply for a new AyushMan Card or renew it.</p>",
+                IC: "<h2>Income Certificate Services</h2><p>Apply, update, or track your Income Certificate.</p>",
+                Dom: "<h2>Domicile Services</h2><p>Apply, update, or track your Domicile.</p>",
+                RC: "<h2>Rashan Card Services</h2><p>Apply, update, or track your Rashan Card.</p>",
+                DL: "<h2>Driving License Services</h2><p>Apply, update, or track your Driving License.</p>",
+            };
+
+            const serviceContainer = document.getElementById("service-container");
+            serviceContainer.innerHTML = serviceData[serviceType] || "<h2>Service Not Found</h2>";
+
+            // Add buttons if service exists
+            if (serviceData[serviceType]) {
+                const buttonContainer = document.createElement("div");
+                buttonContainer.className = "btn-container";
+
+                const bookButton = document.createElement("button");
+                bookButton.className = "btn book-btn";
+                bookButton.innerText = "Book an Appointment";
+                bookButton.onclick = function() {
+                    window.location.href = "booking.html?type=" + serviceType; // Uncomment to navigate
+                };
+
+                const editButton = document.createElement("button");
+                editButton.className = "btn edit-btn";
+                editButton.innerText = "Edit Document Online";
+                editButton.onclick = function() {
+                    window.location.href = "EditBySelf.html?type=" + serviceType; // Uncomment to navigate
+                };
+
+                buttonContainer.appendChild(bookButton);
+                buttonContainer.appendChild(editButton);
+                serviceContainer.appendChild(buttonContainer);
+            }
+        });
+    </script>
+
+</body>
+</html>

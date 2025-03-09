@@ -1,0 +1,19 @@
+# Allow all search engines to crawl the site
+User-agent: *
+Disallow:
+
+# Prevent indexing of private pages (replace "/private-page/" with actual URLs if needed)
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /settings/
+
+# Block search engines from indexing Netlify internal pages (if any)
+Disallow: /_redirects
+Disallow: /_headers
+
+# Allow indexing of images
+User-agent: Googlebot-Image
+Allow: /images/
+
+# Specify your sitemap (replace the URL with your actual sitemap URL if different)
+Sitemap: https://suvidhago.netlify.app/sitemap.xml
